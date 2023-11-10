@@ -1,16 +1,22 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'ostruct'
+require_relative 'game_board'
 
-# class Move < Struct.new('Move', :)
-move = OpenStruct.new(player: "X", row: 1, col: 1)
-
-# game_move = GameMove.new player: "X", row: 1, col: 1
-
-puts move.to_yaml 
-
-file = "data/game1.yaml"
-data = YAML.safe_load_file(file, symbolize_names: true, permitted_classes: [Symbol, OpenStruct])
-
-puts "Game: #{data[:game]}"
-puts "Players: #{data[:players]}"
-puts "Moves: #{data[:moves]}"
+# file = "data/game1.yaml"
+module TicTacToe
+  ##
+  # Parses file and create GameBoard
+  module Parser
+    def from_file(file)
+      data = YAML.safe_load_file(file, symbolize_names: true, permitted_classes: [Symbol, OpenStruct])
+      game_board = GameBoard.new(players: data[:players])
+      data[:moves].each do |move|
+        game_board.next_move(position: Position.new(move.row, move.col))
+      end
+      game_board
+    end
+    module_function :from_file
+  end
+end
