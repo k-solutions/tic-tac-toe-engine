@@ -53,8 +53,8 @@
         devShells = rec {
           default = dev;
           dev = pkgs.mkShell {
-            buildInputs = [ env bundixcli pry ]
-              ++ (with pkgs; [ nodejs yarn rufo ]);
+            buildInputs = [ env bundixcli ]
+              ++ (with pkgs; [ nodejs yarn rufo pry ]);
           };
         };
       });

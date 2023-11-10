@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../lib/tic_tac_toe/game_board'
-require 'pry-debugger'
+require 'pry'
 
 RSpec.describe TicTacToe::GameBoard do
   let(:game_board) { TicTacToe::GameBoard.new }
@@ -30,8 +30,9 @@ RSpec.describe TicTacToe::GameBoard do
       position1 = TicTacToe::Position.new(1, 1)
       position2 = TicTacToe::Position.new(2, 2)
 
-      binding.pry # puts game_board.moves
+      # puts game_board.moves
       game_board.next_move(position: position1)
+
       expect(game_board.moves.last.player).to eq('X')
 
       game_board.next_move(position: position2)

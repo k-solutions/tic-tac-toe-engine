@@ -32,12 +32,15 @@ module TicTacToe
     private
 
     def next_player
-      if @first
-        @players[0]
-      else
-        @players[1]
-      end
+      res =
+        if @first
+          @players[0]
+        else
+          @players[1]
+        end
       @first = !@first
+      
+      res
     end
   end
 end
