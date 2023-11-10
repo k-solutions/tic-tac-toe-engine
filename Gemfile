@@ -16,5 +16,3 @@ gem "thor", "~> 1.3"
 gem "yaml", "~> 0.3.0"
 
 gem "steep", "~> 1.6"
-
-# gem "json", "~> 2.6"
