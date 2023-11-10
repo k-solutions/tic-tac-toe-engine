@@ -1,0 +1,18 @@
+game: first
+players:
+- X
+- O
+moves:
+  - !ruby/object:OpenStruct  
+    player: X
+    row: 1
+    col: 1
+  - !ruby/object:OpenStruct 
+    player: O
+    row: 2
+    col: 2
+  - !ruby/object:OpenStruct 
+    player: X
+    row: 3
+    col: 1
+     

@@ -1,0 +1,23 @@
+module TicTacToe
+  
+  class Position
+    attr_reader row: Integer
+    attr_reader col: Integer
+    def initialize: (Integer, Integer) -> self 
+                  | (row: Integer, col: Integer) -> self   
+  end  
+  
+  class Move 
+    attr_reader player: String 
+    attr_reader position: Position
+    def initialize: (String, Position) -> self 
+                  | (player: String, position: Position) -> self   
+  end   
+
+  class GameBoard
+    attr_reader moves: Array[Move]  
+    def self.default_player: () -> [String, String]
+    def next_move: (position: Position) -> self  
+    def prev_move: () -> self
+  end  
+end  
