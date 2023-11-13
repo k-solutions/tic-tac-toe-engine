@@ -32,6 +32,9 @@ build-iPhoneSimulator/
 #
 # vendor/Pods/
 
+# vim swp
+*.swp
+
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
