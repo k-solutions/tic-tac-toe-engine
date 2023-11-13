@@ -6,6 +6,32 @@ require 'pry'
 RSpec.describe TicTacToe::GameBoard do
   let(:game_board) { TicTacToe::GameBoard.new }
 
+  describe '#evaluate' do
+    it 'evaluate with single position' do
+      position = TicTacToe::Position.new 2, 2
+      player = game_board.players.first
+      game_board.next_move position: position
+      expect(game_board.evaluate(player)).to eq(4)
+      expect(game_board.evaluate(game_board.players.last)).to eq(-4)
+    end
+
+    it 'evaluate with single position and opponent' do
+      positions = [TicTacToe::Position.new(2, 2), TicTacToe::Position.new(2, 3)]
+      positions.each { |p| game_board.next_move(position: p) }
+      expect(game_board.evaluate(game_board.players.first)).to eq(2)
+      expect(game_board.evaluate(game_board.players.last)).to eq(-2)
+    end
+
+    it 'evaluate with 3 positions' do
+      positions = [TicTacToe::Position.new(2, 2), 
+                   TicTacToe::Position.new(2, 3), 
+                   TicTacToe::Position.new(1, 3)]
+      positions.each { |p| game_board.next_move(position: p) }
+      expect(game_board.evaluate(game_board.players.first)).to eq(4)
+      expect(game_board.evaluate(game_board.players.last)).to eq(-4)
+    end
+  end
+
   describe '#initialize' do
     it 'creates a GameBoard with default players' do
       expect(game_board.moves).to be_empty
@@ -29,12 +55,8 @@ RSpec.describe TicTacToe::GameBoard do
     it 'alternates between players' do
       position1 = TicTacToe::Position.new(1, 1)
       position2 = TicTacToe::Position.new(2, 2)
-
-      # puts game_board.moves
       game_board.next_move(position: position1)
-
       expect(game_board.moves.last.player).to eq('X')
-
       game_board.next_move(position: position2)
       expect(game_board.moves.last.player).to eq('O')
     end
